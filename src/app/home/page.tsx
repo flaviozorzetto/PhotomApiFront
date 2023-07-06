@@ -2,17 +2,19 @@
 
 import Header from '../components/Header';
 import ImageDisplayer from '../components/ImageDisplayer';
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { CurrentUserContext } from '../components/UserContext';
+import AddPhotoLayout from '../components/AddPhotoLayout';
 
 export default function Home() {
 	const user = useContext(CurrentUserContext);
+	const [addPhotoDisplay, setAddPhotoDisplay] = useState(false);
 	return (
 		<>
 			<Header />
 			<main className="h-full pt-20 bg-home">
-				<section className="h-full flex items-center justify-center">
-					<div className="relative z-50 h-3/4 w-3/4">
+				<section className="h-full flex flex-col items-center">
+					<div className="relative z-50 h-3/4 w-3/4 mt-11">
 						<div className="absolute -z-10 -left-10 -top-10">
 							<img src="kuromi-top-left-corner.png" className="w-16"></img>
 						</div>
@@ -21,7 +23,18 @@ export default function Home() {
 							<img src="kuromi-bottom-right-corner.png" className="w-12"></img>
 						</div>
 					</div>
+					<button
+						onClick={() => {
+							setAddPhotoDisplay(true);
+						}}
+						className="add-photo-button"
+					>
+						Adicionar nova foto
+					</button>
 				</section>
+				{addPhotoDisplay && (
+					<AddPhotoLayout setAddPhotoDisplay={setAddPhotoDisplay} />
+				)}
 			</main>
 		</>
 	);

@@ -2,8 +2,6 @@
 
 import { useState } from 'react';
 import ExpandableImage from './ExpandableImage';
-import { Ysabeau } from 'next/font/google';
-const LoveLight = Ysabeau({ weight: '400', subsets: ['latin'] });
 
 export default function ImageDisplayer() {
 	const [isImageExpanded, setIsImageExpanded] = useState(false);
@@ -35,7 +33,7 @@ export default function ImageDisplayer() {
 							</div>
 							<img src={image} className="wh-full object-contain" />
 							<button
-								className={`absolute left-1/2 -translate-x-1/2 -bottom-5 py-2 px-3 rounded-full bg-red-600 text-white ${LoveLight.className}`}
+								className={`absolute left-1/2 -translate-x-1/2 -bottom-5 py-2 px-3 rounded-full bg-red-600 text-white`}
 							>
 								Remover
 							</button>
@@ -58,6 +56,7 @@ export default function ImageDisplayer() {
 						setCurrentImageExpanded(image);
 					}}
 				/>
+				{}
 				<ExpandableImage
 					src={image}
 					onClick={() => {

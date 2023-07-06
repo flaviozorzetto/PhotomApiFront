@@ -1,8 +1,8 @@
 import UserContext from './components/UserContext';
 import './styles/globals.css';
-import { Inter } from 'next/font/google';
+import { Ysabeau } from 'next/font/google';
 
-const inter = Inter({ subsets: ['latin'] });
+const ysabeau = Ysabeau({ subsets: ['latin'] });
 
 export const metadata = {
 	title: 'PhotomAlbum',
@@ -15,7 +15,7 @@ export default function RootLayout({
 }) {
 	return (
 		<html lang="pt-br">
-			<body className={inter.className}>
+			<body className={ysabeau.className}>
 				<UserContext>{children}</UserContext>
 			</body>
 		</html>

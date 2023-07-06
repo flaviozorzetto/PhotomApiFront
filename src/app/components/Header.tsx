@@ -1,11 +1,7 @@
-import { Ysabeau } from 'next/font/google';
-
-const LoveLight = Ysabeau({ weight: '400', subsets: ['latin'] });
-
 export default function Header() {
 	return (
 		<header
-			className={`flex items-center w-full h-20 bg-pink-300 px-4 fixed text-2xl border-b border-black  ${LoveLight.className}`}
+			className={`flex items-center w-full h-20 bg-pink-300 px-4 fixed text-2xl border-b border-black`}
 		>
 			<div className="w-12">
 				<img alt="kuromi logo" className="h-full w-full" src="/kuromi.png" />

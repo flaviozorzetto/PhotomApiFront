@@ -7,6 +7,10 @@
 		@apply w-[110px] h-[150px] object-cover border-gray-300 border-2 rounded;
 	}
 
+	.add-photo-button {
+		@apply bg-blue-200 mt-4 py-1 px-3 rounded-full border border-black;
+	}
+
 	.wh-full {
 		@apply w-full h-full;
 	}

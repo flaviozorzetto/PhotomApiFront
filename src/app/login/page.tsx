@@ -32,7 +32,8 @@ export default function Page() {
 
 		const user = JSON.stringify({ clientID: name, clientSecret: password });
 
-		const res = await fetch('https://localhost:7082/login', {
+		console.log(process.env.NEXT_PUBLIC_PHOTOM_API_URL);
+		const res = await fetch(`${process.env.NEXT_PUBLIC_PHOTOM_API_URL}/login`, {
 			method: 'POST',
 			body: user,
 			headers: {
