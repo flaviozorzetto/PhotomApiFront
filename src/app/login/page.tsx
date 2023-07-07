@@ -47,7 +47,6 @@ export default function Page() {
 			} else {
 				setErrorMessage('Erro no servidor');
 			}
-			setErrorMessage('' + res.status);
 			return;
 		}
 
@@ -71,7 +70,6 @@ export default function Page() {
 							onSubmit={submitHandler}
 						>
 							<div className="flex flex-col gap-2">
-								<div>{process.env.NEXT_PUBLIC_PHOTOM_API_URL}</div>
 								<label htmlFor="name">Nome</label>
 								<input
 									id="name"
