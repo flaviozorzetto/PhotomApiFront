@@ -47,6 +47,7 @@ export default function Page() {
 			} else {
 				setErrorMessage('Erro no servidor');
 			}
+			setErrorMessage('' + res.status);
 			return;
 		}
 
