@@ -32,7 +32,6 @@ export default function Page() {
 
 		const user = JSON.stringify({ clientID: name, clientSecret: password });
 
-		console.log(process.env.NEXT_PUBLIC_PHOTOM_API_URL);
 		const res = await fetch(`${process.env.NEXT_PUBLIC_PHOTOM_API_URL}/login`, {
 			method: 'POST',
 			body: user,
@@ -59,7 +58,7 @@ export default function Page() {
 
 		router.push('/home');
 	};
-
+	
 	return (
 		<>
 			<Header />
@@ -76,7 +75,7 @@ export default function Page() {
 									id="name"
 									type="text"
 									value={name}
-									className="focus:outline-black"
+									className="border border-black focus:outline-black"
 									onChange={event => {
 										setName(event.target.value);
 									}}
@@ -88,7 +87,7 @@ export default function Page() {
 									id="password"
 									type="password"
 									value={password}
-									className="focus:outline-black"
+									className="border border-black focus:outline-black"
 									onChange={event => {
 										setPassword(event.target.value);
 									}}
@@ -96,7 +95,7 @@ export default function Page() {
 							</div>
 							{hasError && <p className="text-red-600">{errorMessage}</p>}
 							<button
-								className="bg-white py-2 px-4 rounded-md mt-4 focus:outline-black"
+								className="bg-white py-2 px-4 rounded-md mt-4 border border-black focus:outline-black"
 								type="submit"
 							>
 								Logar
