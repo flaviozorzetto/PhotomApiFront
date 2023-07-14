@@ -2,12 +2,10 @@
 
 import Header from '../components/Header';
 import ImageDisplayer from '../components/ImageDisplayer';
-import { useContext, useState } from 'react';
-import { CurrentUserContext } from '../components/UserContext';
+import { useState } from 'react';
 import AddPhotoLayout from '../components/AddPhotoLayout';
 
 export default function Home() {
-	const user = useContext(CurrentUserContext);
 	const [addPhotoDisplay, setAddPhotoDisplay] = useState(false);
 	return (
 		<>

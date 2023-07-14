@@ -4,7 +4,7 @@
 
 @layer components {
 	.img-in-grid {
-		@apply w-[110px] h-[150px] object-cover border-gray-300 border-2 rounded;
+		@apply w-[110px] h-[150px] object-contain border-gray-300 border-2 rounded;
 	}
 
 	.add-photo-button {

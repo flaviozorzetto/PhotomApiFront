@@ -1,30 +1,53 @@
-import { ChangeEvent, useEffect, useRef, useState } from 'react';
+import { ChangeEvent, useContext, useEffect, useRef, useState } from 'react';
+import { CurrentUserContext } from '../components/UserContext';
 
 export default function AddPhotoLayout({
 	setAddPhotoDisplay,
 }: {
 	setAddPhotoDisplay: (arg0: boolean) => void;
 }) {
+	const user = useContext(CurrentUserContext);
 	const [file, setFile] = useState<Blob>();
 	const [fileUrl, setFileUrl] = useState<string>();
 	const fileInputRef = useRef<HTMLInputElement>(null);
 
 	const fileHandler = (e: ChangeEvent<HTMLInputElement>) => {
-		if (!e.target.files) return;
+		if (!e.target.files) {
+			setFile(undefined);
+			return;
+		}
 		setFile(e.target.files[0]);
 	};
 
+	const uploadHandler = async () => {
+		const formData = new FormData();
+		if (file) {
+			formData.append('file', file);
+		}
+
+		const req = await fetch(
+			`${process.env.NEXT_PUBLIC_PHOTOM_API_URL}/bucket`,
+			{
+				method: 'POST',
+				headers: [['Authorization', `Bearer ${user?.bearer}`]],
+				body: formData,
+			}
+		);
+
+		const res = await req.text();
+		
+		console.log(res);
+	};
+
 	useEffect(() => {
+		if (fileUrl) {
+			URL.revokeObjectURL(fileUrl);
+			setFileUrl(undefined);
+		}
 		if (file) {
 			const objectUrl = URL.createObjectURL(file);
-			console.log(objectUrl);
 			setFileUrl(objectUrl);
 		}
-		return () => {
-			if (fileUrl) {
-				URL.revokeObjectURL(fileUrl);
-			}
-		};
 	}, [file]);
 
 	return (
@@ -65,7 +88,10 @@ export default function AddPhotoLayout({
 							Selecionar imagem
 						</button>
 						{file && (
-							<button className="add-photo-button bg-green-200">
+							<button
+								className="add-photo-button bg-green-200"
+								onClick={uploadHandler}
+							>
 								Subir Imagem
 							</button>
 						)}

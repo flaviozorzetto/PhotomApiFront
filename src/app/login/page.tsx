@@ -1,10 +1,11 @@
 'use client';
-import { FormEvent, useState } from 'react';
+import { FormEvent, useContext, useState } from 'react';
 import Cookies from 'js-cookie';
 import Header from '../components/Header';
 import { useRouter } from 'next/navigation';
 import jwtDecode from 'jwt-decode';
 import { LoginApiResponse } from '../interfaces/LoginApiResponse';
+import { CurrentUserContext } from '../components/UserContext';
 
 export default function Page() {
 	const [name, setName] = useState<string>('');
@@ -15,7 +16,7 @@ export default function Page() {
 
 	const router = useRouter();
 
-	const submitHandler = async (event: FormEvent) => {
+	async function submitHandler(event: FormEvent) {
 		event.preventDefault();
 		setHasError(false);
 		setErrorMessage('');
@@ -57,7 +58,7 @@ export default function Page() {
 		Cookies.set('bearer', bearerToken, { expires: new Date(dateInMsToExpire) });
 
 		router.push('/home');
-	};
+	}
 
 	return (
 		<>
