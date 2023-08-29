@@ -8,7 +8,7 @@
 	}
 
 	.add-photo-button {
-		@apply bg-blue-200 mt-4 py-1 px-3 rounded-full border border-black;
+		@apply bg-blue-200 mt-4 px-3 rounded-full border border-black flex justify-center py-2;
 	}
 
 	.wh-full {

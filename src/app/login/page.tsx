@@ -14,6 +14,12 @@ export default function Page() {
 	const [hasError, setHasError] = useState<boolean>(false);
 	const [errorMessage, setErrorMessage] = useState<string>('');
 
+	const user = useContext(CurrentUserContext);
+
+	const setBearer = (value: string) => {
+		user?.setBearer(value);
+	};
+
 	const router = useRouter();
 
 	async function submitHandler(event: FormEvent) {
@@ -56,6 +62,7 @@ export default function Page() {
 		const dateInMsToExpire = obj.exp * 1000;
 
 		Cookies.set('bearer', bearerToken, { expires: new Date(dateInMsToExpire) });
+		setBearer(bearerToken);
 
 		router.push('/home');
 	}
